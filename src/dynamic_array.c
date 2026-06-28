@@ -49,6 +49,26 @@ int da_add(DynamicArray *array, int value) {
     return 1;
 }
 
+int da_remove_at(DynamicArray *array, int index) {
+    int i;
+
+    if (array == NULL || array->data == NULL) {
+        return 0;
+    }
+
+    if (index < 0 || index >= array->size) {
+        return 0;
+    }
+
+    for (i = index; i < array->size - 1; i++) {
+        array->data[i] = array->data[i + 1];
+    }
+
+    array->size--;
+
+    return 1;
+}
+
 int da_get(DynamicArray *array, int index, int *value) {
     if (array == NULL || array->data == NULL || value == NULL) {
         return 0;
@@ -78,4 +98,15 @@ void da_print(DynamicArray *array) {
     }
 
     printf("]\n");
+}
+
+void da_free(DynamicArray *array) {
+    if (array == NULL) {
+        return;
+    }
+
+    free(array->data);
+    array->data = NULL;
+    array->size = 0;
+    array->capacity = 0;
 }
