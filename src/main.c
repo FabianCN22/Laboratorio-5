@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include "dynamic_array.h"
 #include "lista_simple.h"
+#include "lista_doble.h"
 
 void probar_arreglo(void) {
     DynamicArray arreglo;
@@ -59,11 +60,45 @@ void probar_lista_simple(void) {
     ls_liberar(&lista);
 }
 
+void probar_lista_doble(void) {
+    NodoDoble *lista;
+    NodoDoble *encontrado;
+
+    printf("\n=== LISTA DOBLE ===\n");
+
+    lista = NULL;
+
+    ld_insertar_inicio(&lista, 20);
+    ld_insertar_inicio(&lista, 10);
+    ld_insertar_final(&lista, 40);
+    ld_insertar_pos(&lista, 30, 2);
+
+    printf("Lista hacia adelante:\n");
+    ld_imprimir_adelante(lista);
+
+    printf("Lista hacia atras:\n");
+    ld_imprimir_atras(lista);
+
+    encontrado = ld_buscar(lista, 30);
+
+    if (encontrado != NULL) {
+        printf("Elemento encontrado: %d\n", encontrado->dato);
+    }
+
+    ld_eliminar(&lista, 20);
+
+    printf("Despues de eliminar 20:\n");
+    ld_imprimir_adelante(lista);
+
+    ld_liberar(&lista);
+}
+
 int main(void) {
     printf("Laboratorio 5 - Estructuras de datos\n");
 
     probar_arreglo();
     probar_lista_simple();
+    probar_lista_doble();
 
     return 0;
 }
