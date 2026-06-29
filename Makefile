@@ -2,9 +2,9 @@
 
 CC = gcc
 CFLAGS = -Wall -Wextra -std=c11 -Iinclude
-TARGET = main
+TARGET = main.exe
 
-SRC = src/main.c src/dynamic_array.c
+SRC = src/main.c src/dynamic_array.c src/lista_simple.c
 OBJ = $(SRC:.c=.o)
 
 all: $(TARGET)
@@ -16,4 +16,5 @@ $(TARGET): $(OBJ)
 >$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
->rm -f $(TARGET) $(TARGET).exe src/*.o
+>if exist main.exe del /Q main.exe
+>if exist src\*.o del /Q src\*.o
