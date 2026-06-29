@@ -1,3 +1,4 @@
+#include <stdio.h>
 #include <stdlib.h>
 #include "lista_doble.h"
 
@@ -113,4 +114,109 @@ int ld_insertar_pos(NodoDoble **lista, int dato, int pos) {
     actual->sig = nuevo;
 
     return 1;
+}
+
+int ld_eliminar(NodoDoble **lista, int dato) {
+    NodoDoble *actual;
+
+    if (lista == NULL || *lista == NULL) {
+        return 0;
+    }
+
+    actual = *lista;
+
+    while (actual != NULL) {
+        if (actual->dato == dato) {
+            if (actual->ant != NULL) {
+                actual->ant->sig = actual->sig;
+            } else {
+                *lista = actual->sig;
+            }
+
+            if (actual->sig != NULL) {
+                actual->sig->ant = actual->ant;
+            }
+
+            free(actual);
+            return 1;
+        }
+
+        actual = actual->sig;
+    }
+
+    return 0;
+}
+
+NodoDoble *ld_buscar(NodoDoble *lista, int dato) {
+    NodoDoble *actual;
+
+    actual = lista;
+
+    while (actual != NULL) {
+        if (actual->dato == dato) {
+            return actual;
+        }
+
+        actual = actual->sig;
+    }
+
+    return NULL;
+}
+
+void ld_imprimir_adelante(NodoDoble *lista) {
+    NodoDoble *actual;
+
+    actual = lista;
+
+    printf("[ ");
+
+    while (actual != NULL) {
+        printf("%d ", actual->dato);
+        actual = actual->sig;
+    }
+
+    printf("]\n");
+}
+
+void ld_imprimir_atras(NodoDoble *lista) {
+    NodoDoble *actual;
+
+    actual = lista;
+
+    if (actual == NULL) {
+        printf("[ ]\n");
+        return;
+    }
+
+    while (actual->sig != NULL) {
+        actual = actual->sig;
+    }
+
+    printf("[ ");
+
+    while (actual != NULL) {
+        printf("%d ", actual->dato);
+        actual = actual->ant;
+    }
+
+    printf("]\n");
+}
+
+void ld_liberar(NodoDoble **lista) {
+    NodoDoble *actual;
+    NodoDoble *siguiente;
+
+    if (lista == NULL) {
+        return;
+    }
+
+    actual = *lista;
+
+    while (actual != NULL) {
+        siguiente = actual->sig;
+        free(actual);
+        actual = siguiente;
+    }
+
+    *lista = NULL;
 }
