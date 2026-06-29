@@ -4,7 +4,7 @@ CC = gcc
 CFLAGS = -Wall -Wextra -std=c11 -Iinclude
 TARGET = main.exe
 
-SRC = src/main.c src/dynamic_array.c src/lista_simple.c
+SRC = src/main.c src/dynamic_array.c src/lista_simple.c src/lista_doble.c
 OBJ = $(SRC:.c=.o)
 
 all: $(TARGET)
