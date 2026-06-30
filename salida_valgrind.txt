@@ -1,0 +1,47 @@
+==1792== Memcheck, a memory error detector
+==1792== Copyright (C) 2002-2024, and GNU GPL'd, by Julian Seward et al.
+==1792== Using Valgrind-3.26.0 and LibVEX; rerun with -h for copyright info
+==1792== Command: ./main
+==1792== 
+Laboratorio 5 - Estructuras de datos
+
+=== ARREGLO DINAMICO ===
+Despues de agregar 10, 20 y 30:
+[ 10 20 30 ]
+Elemento en indice 1: 20
+Despues de eliminar el indice 0:
+[ 20 30 ]
+
+=== LISTA SIMPLE ===
+Despues de insertar 10, 20, 30 y 40:
+[ 10 20 30 40 ]
+Elemento encontrado: 30
+Despues de eliminar 20:
+[ 10 30 40 ]
+
+=== LISTA DOBLE ===
+Lista hacia adelante:
+[ 10 20 30 40 ]
+Lista hacia atras:
+[ 40 30 20 10 ]
+Elemento encontrado: 30
+Despues de eliminar 20:
+[ 10 30 40 ]
+
+=== STACK / PILA ===
+Pila vacia: 1
+Despues de push 100, 200 y 300:
+[ 300 200 100 ]
+Elemento superior sin eliminar: 300
+Elemento eliminado con pop: 300
+Despues del pop:
+[ 200 100 ]
+==1792== 
+==1792== HEAP SUMMARY:
+==1792==     in use at exit: 0 bytes in 0 blocks
+==1792==   total heap usage: 14 allocs, 14 frees, 4,328 bytes allocated
+==1792== 
+==1792== All heap blocks were freed -- no leaks are possible
+==1792== 
+==1792== For lists of detected and suppressed errors, rerun with: -s
+==1792== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
