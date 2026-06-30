@@ -1,3 +1,4 @@
+#include <stdio.h>
 #include <stdlib.h>
 #include "pila.h"
 
@@ -45,4 +46,41 @@ int pila_top(NodoPila *pila, int *dato) {
     *dato = pila->dato;
 
     return 1;
+}
+
+int pila_vacia(NodoPila *pila) {
+    if (pila == NULL) {
+        return 1;
+    }
+
+    return 0;
+}
+
+void pila_imprimir(NodoPila *pila) {
+    NodoPila *actual;
+
+    actual = pila;
+
+    printf("[ ");
+
+    while (actual != NULL) {
+        printf("%d ", actual->dato);
+        actual = actual->sig;
+    }
+
+    printf("]\n");
+}
+
+void pila_liberar(NodoPila **pila) {
+    int dato;
+
+    if (pila == NULL) {
+        return;
+    }
+
+    while (!pila_vacia(*pila)) {
+        pila_pop(pila, &dato);
+    }
+
+    *pila = NULL;
 }
