@@ -1,0 +1,11 @@
+*.o
+*.exe
+main
+main.exe
+/build/
+bin/
+obj/
+.vscode/
+.DS_Store
+Thumbs.db
+valgrind-out.txt
