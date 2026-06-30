@@ -2,6 +2,7 @@
 #include "dynamic_array.h"
 #include "lista_simple.h"
 #include "lista_doble.h"
+#include "pila.h"
 
 void probar_arreglo(void) {
     DynamicArray arreglo;
@@ -93,12 +94,44 @@ void probar_lista_doble(void) {
     ld_liberar(&lista);
 }
 
+void probar_pila(void) {
+    NodoPila *pila;
+    int dato;
+
+    printf("\n=== STACK / PILA ===\n");
+
+    pila = NULL;
+
+    printf("Pila vacia: %d\n", pila_vacia(pila));
+
+    pila_push(&pila, 100);
+    pila_push(&pila, 200);
+    pila_push(&pila, 300);
+
+    printf("Despues de push 100, 200 y 300:\n");
+    pila_imprimir(pila);
+
+    if (pila_top(pila, &dato)) {
+        printf("Elemento superior sin eliminar: %d\n", dato);
+    }
+
+    if (pila_pop(&pila, &dato)) {
+        printf("Elemento eliminado con pop: %d\n", dato);
+    }
+
+    printf("Despues del pop:\n");
+    pila_imprimir(pila);
+
+    pila_liberar(&pila);
+}
+
 int main(void) {
     printf("Laboratorio 5 - Estructuras de datos\n");
 
     probar_arreglo();
     probar_lista_simple();
     probar_lista_doble();
+    probar_pila();
 
     return 0;
 }
